@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "title": "Fundação Copel comemora sua primeira incorporação",
+    "excerpt": "É com satisfação que anunciamos nossa primeira incorporação, marcando um novo ciclo de crescimento.",
+    "date": "2025-10-22T08:00:00Z",
+    "author": "Guto Hubux",
+    "image": { "url": "https://picsum.photos/seed/1/300/200", "alt": "Reunião corporativa" }
+  },
+  {
+    "id": "2",
+    "title": "Fundação Copel comemora sua primeira incorporação",
+    "excerpt": "Este site utiliza cookies para melhorar sua experiência.",
+    "date": "2025-10-22T07:00:00Z",
+    "author": "Guto Hubux",
+    "image": { "url": "https://picsum.photos/seed/2/300/200", "alt": "Equipe reunida" }
+  },
+  {
+    "id": "3",
+    "title": "Lorem ipsum dolor sit amet",
+    "excerpt": "Olá! Este é um web part de Teste de Notícias.",
+    "date": "2025-10-21T20:00:00Z",
+    "author": "Guto Hubux",
+    "image": { "url": "https://picsum.photos/seed/3/300/200", "alt": "Mesa de trabalho" }
+  },
+  {
+    "id": "4",
+    "title": "Fundação Copel comemora sua primeira incorporação",
+    "excerpt": "Este site utiliza cookies para melhorar sua experiência.",
+    "date": "2025-10-21T18:00:00Z",
+    "author": "Guto Hubux",
+    "image": { "url": "https://picsum.photos/seed/4/300/200", "alt": "Apresentação corporativa" }
+  },
+  {
+    "id": "5",
+    "title": "Lorem ipsum dolor sit amet",
+    "excerpt": "Olá! Este é um web part de Teste de Notícias.",
+    "date": "2025-10-20T10:00:00Z",
+    "author": "Guto Hubux",
+    "image": { "url": "https://picsum.photos/seed/5/300/200", "alt": "Reunião criativa" }
+  },
+  {
+    "id": "6",
+    "title": "Fundação Copel comemora sua primeira incorporação",
+    "excerpt": "Este site utiliza cookies para melhorar sua experiência.",
+    "date": "2025-10-19T09:00:00Z",
+    "author": "Guto Hubux",
+    "image": { "url": "https://picsum.photos/seed/6/300/200", "alt": "Trabalho em equipe" }
+  }
+]
