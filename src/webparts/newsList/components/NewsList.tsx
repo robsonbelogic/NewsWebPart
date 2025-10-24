@@ -1,75 +1,44 @@
 import * as React from "react";
-import styles from "./NewsList.module.scss";
+import { spfi, SPFx } from "@pnp/sp";
+import type { WebPartContext } from "@microsoft/sp-webpart-base";
+import { useNoticias } from "../hooks/useNoticias";
 
-export type Img = { url: string; alt?: string };
-export type NewsItem = {
-  id: string;
-  title?: string;
-  excerpt?: string;
-  date?: string; // ISO
-  author?: string;
-  image?: Img;
-};
+type Props = { context: WebPartContext };
 
-type Props = { items?: NewsItem[]; title?: string };
+export const NewsList: React.FC<Props> = ({ context }) => {
+  // crie o sp uma vez
+  const sp = React.useMemo(() => {
+    const s = spfi().using(SPFx(context));
+    // DEBUG rápido: confirma web atual
+    // (async () => console.log("Web URL:", await s.web.toUrl()))();
+    return s;
+  }, [context]);
 
-const NewsList: React.FC<Props> = ({ items = [], title = "Notícias" }) => {
-  const safe = Array.isArray(items) ? items : [];
+  // >>> AJUSTE AQUI para o caminho real da sua lista <<<
+  const listUrl = "/sites/dev/Lists/Events"; // ou "/sites/dev/SitePages"
+
+  const { items, loading, error, refresh } = useNoticias(sp, listUrl, 5);
+
+  if (loading) return <div>Carregando…</div>;
+  if (error) return <div>Erro: {error}</div>;
+  if (!items.length)
+    return (
+      <div>
+        <div>Sem notícias.</div>
+        <button onClick={refresh}>Tentar novamente</button>
+      </div>
+    );
 
   return (
-    <div className={styles.newsList}>
-      <h3 className={styles.sectionTitle}>{title}</h3>
-
-      {safe.length === 0 ? (
-        <div className={styles.emptyState}>
-          <p>📰 Nenhuma notícia disponível no momento!</p>
-          <p className={styles.hint}>Verifique novamente mais tarde.</p>
-        </div>
-      ) : (
-        <div className={styles.list}>
-          {safe.map((n) => (
-            <a
-              key={n.id || Math.random().toString(36)}
-              href={"#"}
-              className={styles.item}
-            >
-              {n.image?.url ? (
-                <img
-                  src={n.image.url}
-                  alt={n.image.alt || n.title || "Notícia"}
-                  className={styles.image}
-                />
-              ) : (
-                <div className={styles.imagePlaceholder}>🗞️</div>
-              )}
-
-              <div className={styles.content}>
-                <h4 className={styles.title}>
-                  {n.title || "Título não informado"}
-                </h4>
-
-                <p className={styles.excerpt}>
-                  {n.excerpt || "Descrição indisponível."}
-                </p>
-
-                <div className={styles.meta}>
-                  <span className={styles.author}>
-                    {n.author || "Autor desconhecido"}
-                  </span>
-                  <span className={styles.separator}>•</span>
-                  <span className={styles.time}>
-                    {n.date
-                      ? new Date(n.date).toLocaleDateString()
-                      : "Data não informada"}
-                  </span>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      )}
+    <div>
+      <button onClick={refresh}>Atualizar</button>
+      <ul>
+        {items.map((n: any) => (
+          <li key={n.Id}>
+            <strong>{n.Title ?? "(Sem título)"}</strong>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
-
-export default NewsList;
