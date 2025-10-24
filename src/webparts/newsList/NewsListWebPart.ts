@@ -11,7 +11,7 @@ export default class NewsWebPart extends BaseClientSideWebPart<{}> {
   }
 
   public render(): void {
-    const element = React.createElement(NewsList, { context: this.context });
+    const element = React.createElement(NewsList);
 
     ReactDom.render(element, this.domElement);
   }
