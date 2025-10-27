@@ -107,7 +107,9 @@ export const NewsList: React.FC = () => {
   return (
     <section className={styles.wrapper} aria-labelledby="news-heading">
       <header className={styles.header}>
-        <span id="news-heading">Notícias</span>
+        <span id="news-heading">
+          <strong>Notícias</strong>
+        </span>
       </header>
 
       <ul className={styles.list}>
