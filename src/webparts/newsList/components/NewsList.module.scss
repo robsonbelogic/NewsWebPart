@@ -85,7 +85,7 @@
 /* META */
 .meta {
   font-size: 0.7em;
-  color: gray;
+  color: rgb(161, 161, 161);
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -100,6 +100,13 @@
     text-align: left;
     color: #323130
 }
+
+
+.list > li {
+  border-bottom: 1px solid var(--separator, #e5e7eb);
+  padding: 10px 0;
+}
+
 
 
 /* =============== RESPONSIVO =============== */
