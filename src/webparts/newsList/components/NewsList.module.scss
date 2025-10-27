@@ -21,7 +21,7 @@
   grid-template-columns: 1fr 2fr; 
   gap: 16px;
   text-decoration: none;
-   color: inherit;   
+  color: inherit;   
   width: 100%;
   align-items: start;
 }
@@ -101,6 +101,15 @@
   margin: auto 4px;
 }
 
+  .header {
+      font-family: "inherit";
+      font-weight: 500;
+      font-size: 1.2em;
+      padding-bottom: 10px;
+      text-align: left;
+      color: #323130
+  }
+
 
 /* =============== RESPONSIVO =============== */
 @media (max-width: 480px) {
@@ -117,9 +126,6 @@
     font-size: 1em;
   }
 
-.header {
-  font-size: 1.2em;
-}
 
   .preview {
     -webkit-line-clamp: 1;
