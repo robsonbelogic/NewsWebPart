@@ -91,24 +91,15 @@
   flex-wrap: wrap;
 }
 
-/* PONTINHO ENTRE METAS */
-.dot {
-  width: 4px;
-  height: 4px;
-  background-color: gray;
-  border-radius: 50%;
-  display: inline-block;
-  margin: auto 4px;
-}
 
-  .header {
-      font-family: "inherit";
-      font-weight: 500;
-      font-size: 1.2em;
-      padding-bottom: 10px;
-      text-align: left;
-      color: #323130
-  }
+.header {
+    font-family: "inherit";
+    font-weight: 500;
+    font-size: 1.2em;
+    padding-bottom: 10px;
+    text-align: left;
+    color: #323130
+}
 
 
 /* =============== RESPONSIVO =============== */

@@ -145,9 +145,11 @@ export const NewsList: React.FC = () => {
                   <p className={styles.preview}>{preview}</p>
 
                   <div className={styles.meta}>
-                    <span className={styles.metaItem}>{catText}</span>
-                    <span className={styles.dot} aria-hidden>
-                      •
+                    <span
+                      className={styles.metaItem}
+                      style={{ fontWeight: "bold" }}
+                    >
+                      {catText}
                     </span>
                     <time className={styles.metaItem} dateTime={post.date}>
                       {when}
