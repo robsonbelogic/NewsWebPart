@@ -1,96 +1,134 @@
-/* container: até 1/3 da tela, 100% no mobile */
+/* =============== GERAL =============== */
+/* FAZER O COMPONENTE RESPEITAR O PAI */
 .wrapper {
   width: 100%;
-  max-width: 33.33vw;
-  @media (min-width: 1440px) { max-width: 480px; }
-  @media (max-width: 768px) { max-width: 100%; }
+  max-width: 100%;
+  box-sizing: border-box;
+  /* opcional: limitar internamente */
+  /* max-width: var(--news-max, 100%); */
 }
 
-.header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 12px;
-  h2 { margin: 0; font-size: 1.1rem; color: #0f2f6b; }
-}
-.refresh { cursor: pointer; font-size: .9rem; }
-
+/* LISTA SEM VAZAR */
 .list {
   list-style: none;
-  padding: 0; margin: 0;
-  display: grid; gap: 16px;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  // gap: 16px;
+  overflow: hidden; /* evita vazamento visual */
 }
 
+/* =============== CARD =============== */
+/* CARD EM GRID: imagem 1/3, conteúdo 2/3 */
 .card {
   display: grid;
-  grid-template-columns: 180px 1fr; /* mais larga na horizontal */
+  grid-template-columns: 1fr 2fr; /* imagem = 1/3 do card */
   gap: 16px;
-  padding: 12px;
-  background: transparent;
-
-  @media (max-width: 480px) {
-    grid-template-columns: 120px 1fr; /* ainda larga, mas proporcional */
-  }
+  text-decoration: none;
+   color: inherit;   
+  width: 100%;
+  align-items: start;
 }
 
+/* IMAGEM SEM VAZAR */
+.image {
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* mantém proporção bonita */
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* FIGURE */
 .figure {
   margin: 0;
 }
 
-.image {
-  width: 80%;
-  height: 100px; /* retângulo horizontal */
-  object-fit: cover;
-  display: block;
-  flex-shrink: 0;
-
-  @media (max-width: 480px) {
-    height: 80px;
-  }
-}
+/* =============== CONTEÚDO =============== */
 .content {
+  min-width: 0;
   display: grid;
   grid-template-rows: auto auto auto auto;
   gap: 6px;
 }
 
+/* evitar quebra e overflow em textos */
+.preview,
+.metaItem {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+/* TÍTULO — mostrar inteiro, quebrando conforme o espaço e alinhado à esquerda */
 .title {
+  font-size: 1em;
+  font-weight: semi-bold;
   margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.2;
-  a {
-    color: #0b1f44;
-    text-decoration: none;
-  }
-  /* clamp 2 linhas */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  display: block;
   overflow: hidden;
+  text-align: left;
+  white-space: normal;       /* permite quebra de linha natural */
+  word-break: break-word;    /* quebra palavras longas */
+  overflow-wrap: anywhere;   /* garante quebra mesmo em títulos grandes */
 }
 
+
+/* PREVIEW — duas linhas curtas */
 .preview {
-  margin: 0;
-  color: #2c3e66;
-  font-size: .95rem;
-  line-height: 1.35;
-  /* clamp 2-3 linhas (ajuste como quiser) */
+  font-size: 0.8em;
+  color: #444;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
 }
 
+/* META */
 .meta {
-  display: flex; align-items: center; gap: 8px;
-  color: #5d6b8a;
-  font-size: .85rem;
+  font-size: 0.7em;
+  color: gray;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
-.metaItem { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dot { opacity: .6; }
 
-.readmore {
-  font-size: .9rem;
-  text-decoration: underline;
-  color: #0b3ea8;
-  width: max-content;
+/* PONTINHO ENTRE METAS */
+.dot {
+  width: 4px;
+  height: 4px;
+  background-color: gray;
+  border-radius: 50%;
+  display: inline-block;
+  margin: auto 4px;
+}
+
+
+/* =============== RESPONSIVO =============== */
+@media (max-width: 480px) {
+  .card {
+    grid-template-columns: 1fr 2fr;
+    gap: 12px;
+  }
+
+  .image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .title {
+    font-size: 1em;
+  }
+
+.header {
+  font-size: 1.2em;
+  color: inherit;
+  font-weight: semi-bold;
+  font-family: inherit; /* herda a fonte do elemento pai */
+}
+
+  .preview {
+    -webkit-line-clamp: 1;
+  }
 }

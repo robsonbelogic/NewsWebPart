@@ -77,7 +77,6 @@ const FeaturedImage: React.FC<{
       const data = await getFeaturedImage(post);
       if (alive) setImg(data);
     })().catch((err) => {
-      // eslint-disable-next-line no-console
       console.error(err);
     });
     return () => {
@@ -99,7 +98,7 @@ const FeaturedImage: React.FC<{
 };
 
 export const NewsList: React.FC = () => {
-  const { items, loading, error } = useWpPosts(5); // removido refresh
+  const { items, loading, error } = useWpPosts(5); // sem botão de refresh
 
   if (loading) return <p>Carregando notícias...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -108,7 +107,7 @@ export const NewsList: React.FC = () => {
   return (
     <section className={styles.wrapper} aria-labelledby="news-heading">
       <header className={styles.header}>
-        <h2 id="news-heading">Notícias</h2>
+        <span id="news-heading">Notícias</span>
       </header>
 
       <ul className={styles.list}>
@@ -124,7 +123,14 @@ export const NewsList: React.FC = () => {
 
           return (
             <li key={post.id}>
-              <article className={styles.card}>
+              {/* TUDO CLICÁVEL */}
+              <a
+                href={post.link}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.card}
+                aria-label={`Abrir notícia: ${title}`}
+              >
                 <FeaturedImage
                   post={post}
                   alt={title}
@@ -132,11 +138,7 @@ export const NewsList: React.FC = () => {
                 />
 
                 <div className={styles.content}>
-                  <h3 className={styles.title}>
-                    <a href={post.link} target="_blank" rel="noreferrer">
-                      {title}
-                    </a>
-                  </h3>
+                  <h3 className={styles.title}>{title}</h3>
 
                   <p className={styles.preview}>{preview}</p>
 
@@ -149,17 +151,8 @@ export const NewsList: React.FC = () => {
                       {when}
                     </time>
                   </div>
-
-                  <a
-                    className={styles.readmore}
-                    href={post.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Ler mais
-                  </a>
                 </div>
-              </article>
+              </a>
             </li>
           );
         })}
